@@ -1,7 +1,9 @@
 import React from 'react';
 import {Dimensions } from "react-native";
+
 import {
   SafeAreaView,
+  TouchableOpacity,
   StyleSheet,
   ScrollView,
   View,
@@ -20,52 +22,86 @@ import {
 const App: () => React$Node = () => {
   return (
     <View style={styles.body}>
-      <Text style={styles.sectionTitle}>CityPop</Text>
+      <Text style={styles.title}>CityPop</Text>
+      <Separator />
+
+      <TouchableOpacity       
+          style = {[styles.button, marginTop = 20]}>
+          <Text style ={styles.buttonText}>SEARCH BY CITY</Text>
+      </TouchableOpacity>  
+
+      <TouchableOpacity       
+          style = {styles.button}>
+          <Text style ={styles.buttonText}>SEARCH BY COUNTRY</Text>
+      </TouchableOpacity>   
+
     </View>
     
   );
 };
 
+function Separator() {
+  return <View style={styles.separator} />;
+}
+
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
   body: {
     flex: 1,
-    backgroundColor: "cornflowerblue",
+    backgroundColor: "#3366cc",
+    alignItems: "center"
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 60,
+
+    title: {
+    fontSize: 90,
     fontWeight: '600',
-    color: "midnightblue",
+    color: "#00b3b3",
     textAlign: "center",
-    marginTop: Math.round(Dimensions.get('window').height)*0.3,
+    textShadowColor: "white",
+    textShadowOffset:{width: -1, height: 1},
+    textShadowRadius:1,
+    marginTop: Math.round(Dimensions.get('window').height)*0.15,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+
+  separator: {
+    marginVertical: 20,
   },
-  highlight: {
-    fontWeight: '700',
+  
+  button: {
+    backgroundColor: "#00b3b3",
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 20,
+    width: Math.round(Dimensions.get('window').width)*0.9,
+    height: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#101010',
+    shadowOffset: { width: -5, height: 5 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 1,
   },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
+  buttonText: {
+    color: "ivory",
+    fontSize: 30,
     fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+    textShadowColor: "black",
+    textShadowOffset:{width: -1, height: 1},
+    textShadowRadius:1,
+  }
+
+  
+  
 });
+
+/*marginRight:40,
+    marginLeft:40,
+    marginTop:40,
+    paddingTop:10,
+    paddingBottom:10,
+    backgroundColor:'#1E6738',
+    borderRadius:10,
+    borderWidth: 1,
+    borderColor: '#fff'*/
 
 export default App;
