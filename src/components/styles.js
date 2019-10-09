@@ -32,7 +32,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     color: "#00b3b3",
     textAlign: "center",
-    textShadowColor: "white",
+    textShadowColor: "ivory",
     textShadowOffset:{width: -1, height: 1},
     textShadowRadius:1,
     marginTop: Math.round(Dimensions.get('window').height)*0.15,
@@ -47,20 +47,50 @@ export default StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
     backgroundColor: "#00b3b3",
-    color: "white"
+    color: "ivory",
   },
+
+  loader: {
+    marginVertical: 100,
+   },
+
+   infoBox: {
+    borderColor: "ivory",
+    borderWidth: 2,
+    marginTop: 100,
+    height: 120,
+    width: Math.round(Dimensions.get('window').width)*0.9,
+    backgroundColor: "#00b3b3",
+   },
+
+   infoHeader: {
+    fontSize: 30,
+    fontWeight: "300",
+    color: "ivory",
+    textAlign: "center",
+   },
+
+   infoText: {
+    fontSize: 50,
+    fontWeight: "400",
+    color: "ivory",
+    textAlign: "center",
+    textAlignVertical: "center",
+    marginTop: 4,
+   },
 
   buttonWrapper: {
     marginTop: 50,
     padding: 10,
-    borderColor: "white",
+    borderColor: "ivory",
     borderWidth: 2,
     borderRadius: 50,
-    shadowColor: 'black',
-    shadowOffset: { width: -3, height: 3 },
+    shadowColor: '#101010',
+    shadowOffset: { width: -5, height: 5 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
     backgroundColor: "#00b3b3",
+    
   },
 
 
@@ -69,6 +99,8 @@ export default StyleSheet.create({
     fontWeight: '400',
     color: "#00b3b3",
     textAlign: "center",
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: Math.round(Dimensions.get('window').height)*0.25,
     textShadowColor: "ivory",
     textShadowOffset:{width: -1, height: 0.5},
@@ -92,7 +124,6 @@ export default StyleSheet.create({
     shadowOffset: { width: -5, height: 5 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
-    elevation: 1,
   },
 
   buttonText: {

@@ -22,7 +22,8 @@ class Home extends React.Component {
       <Text style={styles.title}>CityPop</Text>
       <View style={styles.separator} />
       <TouchableOpacity       
-          onPress={() => this.props.navigation.navigate('citySearch')} style = {[styles.button, marginTop = 20]}>
+          onPress={() => this.props.navigation.navigate('citySearch')}
+          style = {styles.button}>
           <Text style ={styles.buttonText}>SEARCH BY CITY</Text>
       </TouchableOpacity>  
 

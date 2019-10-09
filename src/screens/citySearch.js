@@ -27,6 +27,7 @@ class citySearch extends React.Component {
       style={styles.textField}
       placeholder = "Enter a city"
       placeholderTextColor = "white"
+      onChangeText={(username) => this.setState({username})}
       />
       <View style={styles.buttonWrapper}>
         <IconButton
@@ -34,6 +35,7 @@ class citySearch extends React.Component {
         icon="search"
         color= "ivory"
         size= {40}
+        onPress={() => this.props.navigation.navigate('cityResult',{city: this.state.username})}
   />
   </View>
 
