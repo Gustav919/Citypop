@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from "../components/styles.js";
 import { IconButton, Colors } from 'react-native-paper';
-import geonamesinfo from "../components/geonames.js";
 
 
 import {
@@ -16,28 +15,6 @@ import {
   TextInput,
   ActivityIndicator
 } from 'react-native';
-
-/*
-function getCityPopulation() {
-
-  console.log("CALLED")
-
-  //return fetch(geonamesinfo.url + this.props.navigation.state.params.city+"&username="+geonamesinfo.username)
-  return fetch("http://api.geonames.org/search?q=london&maxRows=1&orderby=population&username=weknowit")
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-      return responseJson;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};*/
-
-
-
-
-
 
 class cityResult extends React.Component {
 
@@ -81,21 +58,23 @@ class cityResult extends React.Component {
      );}
 
      if(this.state.population == -1){
-      console.log("UNDEFINED!")
 
       return( 
        <View style={styles.body}> 
+             {styles.backButton(this.props.navigation)}
+
        <Text style={styles.header}>"{this.props.navigation.state.params.city}" was not found</Text>
      </View>
     );}
     return (
       
       <View style={styles.body}> 
+            {styles.backButton(this.props.navigation)}
+
       <Text style={styles.header}>{this.state.name}</Text>
       <View style={styles.infoBox}>
       <Text style={styles.infoHeader}>Population</Text>
       <Text style={styles.infoText}>{((this.state.population).toLocaleString()).replace(new RegExp(',', 'g'), ' ')}   </Text>
-
       </View>
     </View>
 
