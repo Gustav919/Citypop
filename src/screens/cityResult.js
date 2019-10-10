@@ -1,18 +1,8 @@
 import React from 'react';
 import styles from "../components/styles.js";
-import { IconButton, Colors } from 'react-native-paper';
-
-
 import {
-  SafeAreaView,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
-  Dimensions,
-  TextInput,
   ActivityIndicator
 } from 'react-native';
 
@@ -22,65 +12,68 @@ class cityResult extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      population: -1
+      cityFound: false
      };
-    }
-    componentDidMount(){
-      fetch("http://api.geonames.org/searchJSON?username=weknowit&featureClass=P&orderby=population&maxrows=1&name_equals="+this.props.navigation.state.params.city)
-      .then(response => response.json())
-      .then((responseJson)=> {
+  }
+  // Function that sends API-requests to geonames to obtain the searched city,
+  componentDidMount(){
 
-        if (responseJson.totalResultsCount > 0) {
+    // Fetches city information
+    fetch("http://api.geonames.org/searchJSON?username=weknowit&featureClass=P&orderby=population&maxrows=1&name_equals="+this.props.navigation.state.params.city)
+    .then(response => response.json())
+    .then((responseJson)=> {
+      
+      // Sets information if a city was found
+      if (responseJson.totalResultsCount > 0) {
         this.setState({
-         name: responseJson.geonames[0].name,
-         population: responseJson.geonames[0].population
+          name: responseJson.geonames[0].name,
+          population: responseJson.geonames[0].population,
+          cityFound: true
         })
       }      
-    
 
+      // Sets loading to false, which makes the screen switch from loading screen to display eventual results
       this.setState({
         loading: false
-      })  
       })
-      .catch(error=>console.log(error))
-      }
+
+    // Logs eventual errors  
+    }).catch(error=>console.log(error))
+  }
   render() {
 
-      
-      if(this.state.loading){
+    // Until all necessary information is obtained, a loading screen is displayed
+    if (this.state.loading) {
        return( 
         <View style={styles.body}> 
-        <Text style={styles.header}>Searching...</Text>
-        <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#0c9"/>
+          <Text style={styles.header}>Searching...</Text>
+          <View style={styles.loader}>
+            <ActivityIndicator size="large" color="#0c9"/>
+          </View>
+        </View>
+     );}
+    
+    // If no city was found, a 'no results page' is displayed
+    if (!this.state.cityFound) {
+      return( 
+        <View style={styles.body}> 
+          {styles.backButton(this.props.navigation)}
+          <Text style={styles.header}>"{this.props.navigation.state.params.city}" was not found</Text>
+        </View>
+      )}
+
+    // Else, if all necessary information is obtained & a city was found, the population is displayed
+    return (
+      <View style={styles.body}> 
+        {styles.backButton(this.props.navigation)}
+        <Text style={styles.header}>{this.state.name}</Text>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoHeader}>Population</Text>
+          <Text style={styles.infoText}>{((this.state.population).toLocaleString()).replace(new RegExp(',', 'g'), ' ')}   </Text>
         </View>
       </View>
-     );}
-
-     if(this.state.population < 1){
-
-      return( 
-       <View style={styles.body}> 
-             {styles.backButton(this.props.navigation)}
-
-       <Text style={styles.header}>"{this.props.navigation.state.params.city}" was not found</Text>
-     </View>
-    )}
-    return (
-      
-      <View style={styles.body}> 
-            {styles.backButton(this.props.navigation)}
-
-      <Text style={styles.header}>{this.state.name}</Text>
-      <View style={styles.infoBox}>
-      <Text style={styles.infoHeader}>Population</Text>
-      <Text style={styles.infoText}>{((this.state.population).toLocaleString()).replace(new RegExp(',', 'g'), ' ')}   </Text>
-      </View>
-    </View>
-
-  );
-
-}
+    );
+  }
 }
 
 export default cityResult;
