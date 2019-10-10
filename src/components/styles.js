@@ -27,6 +27,8 @@ import leftPad from 'left-pad';
 
 export default StyleSheet.create({
 
+
+
   body: {
     flex: 1,
     backgroundColor: "#3366cc",
@@ -149,7 +151,7 @@ export default StyleSheet.create({
   },
 
   separator: {
-    marginVertical: 40,
+    marginVertical: 20,
   },
   
   button: {
@@ -165,6 +167,8 @@ export default StyleSheet.create({
     shadowOffset: { width: -5, height: 5 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
+    borderColor: "ivory",
+    borderWidth: 2,
   },
 
   buttonText: {

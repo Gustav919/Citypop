@@ -18,7 +18,7 @@ import {
 
 
 
-class citySearch extends React.Component {
+class countrySearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,13 +31,14 @@ class citySearch extends React.Component {
                
       {styles.backButton(this.props.navigation)}
 
-      <Text style={styles.header}>SEARCH BY {"\n"}CITY</Text>
+      <Text style={styles.header}>SEARCH BY {"\n"}COUNTRY</Text>
       <TextInput 
       style={styles.textField}
-      placeholder = "Enter a city"
+      placeholder = "Enter a country"
       placeholderTextColor = "#D3D3D3"
       autoCorrect = {false}
-      onChangeText={(city) => {this.setState({city});this.state.disableSearch = (city.length == 0); }}
+      onChangeText={(country) => {this.setState({country});this.state.disableSearch = (country.length == 0); }}
+
       />
       <View style={styles.searchButtonWrapper}>
         <IconButton
@@ -45,7 +46,7 @@ class citySearch extends React.Component {
         color= "ivory"
         size= {40}
         disabled= {this.state.disableSearch}
-        onPress={() => this.props.navigation.navigate('cityResult',{city: this.state.city})}
+        onPress={() => this.props.navigation.navigate('countryResult',{country: this.state.country})}
   />
   </View>
 
@@ -53,4 +54,4 @@ class citySearch extends React.Component {
   );
 }
 }
-export default citySearch;
+export default countrySearch;

@@ -28,6 +28,7 @@ class Home extends React.Component {
       </TouchableOpacity>  
 
       <TouchableOpacity       
+          onPress={() => this.props.navigation.navigate('countrySearch')}
           style = {styles.button}>
           <Text style ={styles.buttonText}>SEARCH BY COUNTRY</Text>
       </TouchableOpacity>   

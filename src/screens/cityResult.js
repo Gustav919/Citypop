@@ -57,7 +57,7 @@ class cityResult extends React.Component {
       </View>
      );}
 
-     if(this.state.population == -1){
+     if(this.state.population < 1){
 
       return( 
        <View style={styles.body}> 
@@ -65,7 +65,7 @@ class cityResult extends React.Component {
 
        <Text style={styles.header}>"{this.props.navigation.state.params.city}" was not found</Text>
      </View>
-    );}
+    )}
     return (
       
       <View style={styles.body}> 
