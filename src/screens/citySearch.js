@@ -23,6 +23,7 @@ class citySearch extends React.Component {
       <View style={styles.body}>
         {styles.backButton(this.props.navigation)}
         <Text style={styles.header}>SEARCH BY {"\n"}CITY</Text>
+        <View style = {styles.separator}></View>
         <TextInput 
         style={styles.textField}
         placeholder = "Enter a city"
@@ -34,7 +35,7 @@ class citySearch extends React.Component {
           <IconButton
           icon="search"
           color= "ivory"
-          size= {40}
+          size= {35}
           disabled= {this.state.disableSearch}
           onPress={() => this.props.navigation.navigate('cityResult',{city: this.state.city})}
           />

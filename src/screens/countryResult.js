@@ -9,6 +9,9 @@ import {
 
 class cityResult extends React.Component {
 
+  // Safety mechanism to prevent the program to set state on an unmounted component, which may cause memory leaks
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -22,17 +25,19 @@ class cityResult extends React.Component {
   // and then to obtain most populated cities. The page wont render until the function is finished.
   componentDidMount(){
 
+    // Mounts component
+    this._isMounted = true;
+
     // Fetches country information
     fetch("http://api.geonames.org/searchJSON?username=weknowit&featureClass=A&orderby=popuation=maxrows=1&name_equals="+this.props.navigation.state.params.country)
     .then(response => response.json())
     .then((responseJson)=> {
 
-      // Sets information if a country was found
-      if (responseJson.totalResultsCount > 0 && responseJson.geonames[0].name === responseJson.geonames[0].countryName) {
+      // Sets information if component is mounted & a country was found
+      if (this._isMounted && responseJson.totalResultsCount > 0 && responseJson.geonames[0].name === responseJson.geonames[0].countryName) {
         this.setState({
           country: responseJson.geonames[0].name,
-          countryCode: responseJson.geonames[0].countryCode,
-          countryFound: true,
+          countryCode: responseJson.geonames[0].countryCode
         })  
         
         // Fetches cities in the country
@@ -40,15 +45,18 @@ class cityResult extends React.Component {
           .then(response => response.json())
           .then((responseJson)=> {
 
-            // Sets the three most populated cities, without any citation signs
-            this.setState({
-              cities: [
-                responseJson.geonames[0].name.replace(new RegExp('"', 'g'), ''),
-                responseJson.geonames[1].name.replace(new RegExp('"', 'g'), ''),
-                responseJson.geonames[2].name.replace(new RegExp('"', 'g'), '')
-              ]            
-            })
-            
+            // Sets information if component is mounted
+            if(this._isMounted) {
+
+              // Sets the three most populated cities, without any citation signs
+              this.setState({
+                cities: [
+                  responseJson.geonames[0].name.replace(new RegExp('"', 'g'), ''),
+                  responseJson.geonames[1].name.replace(new RegExp('"', 'g'), ''),
+                  responseJson.geonames[2].name.replace(new RegExp('"', 'g'), '')
+                ]            
+              })
+            }
             // Logs eventual errors  
           }).catch(error=>console.log(error))
       }      
@@ -56,8 +64,14 @@ class cityResult extends React.Component {
 
     // Sets loading to false, which makes the screen switch from loading screen to display eventual results
     this.setState({
-      loading: false
+      loading: false,
+      countryFound: true,
     })  
+  }
+
+  // Unmounts component
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
   // Headers on different pages
   header: {
-    fontSize: Math.round(Dimensions.get('window').width)*0.12,
+    fontSize: Math.round(Dimensions.get('window').width)*0.15,
     fontWeight: '400',
     color: "ivory",
     textAlign: "center",
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
   // Standard buttons
   button: {
     backgroundColor: "#00b3b3",
-    marginTop: Math.round(Dimensions.get('window').width)*0.05,
+    marginTop: Math.round(Dimensions.get('window').height)*0.05,
     width: Math.round(Dimensions.get('window').width)*0.9,
-    height: Math.round(Dimensions.get('window').width)*0.18,
+    height: Math.round(Dimensions.get('window').height)*0.1,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#101010',
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
  
   // Back button displayed in top left corner
   backButtonWrapper: {
-    marginTop: Math.round(Dimensions.get('window').height)*0.045,
-    marginRight: Math.round(Dimensions.get('window').height)*0.33,
+    marginTop: Math.round(Dimensions.get('window').height)*0.05,
+    marginRight: Math.round(Dimensions.get('window').width)*0.65,
     flexDirection: 'row',
     backgroundColor: "#00b3b3",
     shadowColor: '#101010',
@@ -98,14 +98,15 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     borderColor: "ivory",
     borderWidth: 2,
-    borderRadius: 50,
+    borderRadius: 50,    
+    alignItems: "center",
+    textAlign: "center",
   },
 
   // Text on back button
   backButtonText: {
     fontSize: Math.round(Dimensions.get('window').width)*0.05,
     color: "ivory",
-    marginTop: Math.round(Dimensions.get('window').height)*0.02,
     marginRight: 5,
   },
   
@@ -126,10 +127,12 @@ const styles = StyleSheet.create({
   infoBox: {
     borderColor: "black",
     borderWidth: 2,
-    marginTop: Math.round(Dimensions.get('window').width)*0.25,
-    height: Math.round(Dimensions.get('window').width)*0.3,
+    marginTop: Math.round(Dimensions.get('window').height)*0.1,
+    height: Math.round(Dimensions.get('window').height)*0.2,
     width: Math.round(Dimensions.get('window').width)*0.9,
     backgroundColor: "#00b3b3",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   // Header to the information
@@ -137,7 +140,6 @@ const styles = StyleSheet.create({
     fontSize: Math.round(Dimensions.get('window').width)*0.08,
     fontWeight: "300",
     color: "ivory",
-    textAlign: "center",
   },
 
   // Information text
@@ -145,19 +147,17 @@ const styles = StyleSheet.create({
     fontSize: Math.round(Dimensions.get('window').width)*0.14,
     fontWeight: "400",
     color: "ivory",
-    textAlign: "center",
-    textAlignVertical: "center",
-    marginTop: 4,
+    marginLeft: 40,
   },
 
   // Loading symbol
   loader: {
-    marginVertical: Math.round(Dimensions.get('window').width)*0.28,
+    marginVertical: Math.round(Dimensions.get('window').height)*0.3,
   },
       
   // Seperator to add space between elements 
   separator: {
-    marginVertical: Math.round(Dimensions.get('window').width)*0.11,
+    marginVertical: Math.round(Dimensions.get('window').height)*0.03,
   },
   
   // Funtion that renders the entire back Button
