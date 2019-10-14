@@ -29,20 +29,21 @@ class cityResult extends React.Component {
     .then(response => response.json())
     .then((responseJson)=> {
       
-      // Sets information if component is mounted & a city was found 
-      if (this._isMounted && responseJson.totalResultsCount > 0) {
+        // Sets information, and loading to false, if component is mounted & a city was found. This makes the screen switch from loading screen to display eventual results      
+        if (this._isMounted && responseJson.totalResultsCount > 0) {
         this.setState({
           name: responseJson.geonames[0].name,
           population: responseJson.geonames[0].population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "),
-          cityFound: true
+          cityFound: true,
+          loading: false
         })
-      }   
+      } else {
       
-
-      // Sets loading to false, which makes the screen switch from loading screen to display eventual results
-      this.setState({
-        loading: false
-      })
+        // If no cities was found, loading is set to false, which makes the screen switch from loading screen
+        this.setState({
+          loading: false
+        })
+      }
 
     // Logs eventual errors  
     }).catch(error=>console.log(error))

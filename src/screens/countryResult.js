@@ -45,21 +45,27 @@ class cityResult extends React.Component {
           .then(response => response.json())
           .then((responseJson)=> {
 
-            // Sets information if component is mounted
-            if(this._isMounted) {
-
-              // Sets the three most populated cities, without any citation signs
-              this.setState({
-                cities: [
-                  responseJson.geonames[0].name.replace(new RegExp('"', 'g'), ''),
-                  responseJson.geonames[1].name.replace(new RegExp('"', 'g'), ''),
-                  responseJson.geonames[2].name.replace(new RegExp('"', 'g'), '')
-                ]            
-              })
-            }
+            // Sets the three most populated cities, without any citation signs
+            // Also sets loading to false, which makes the screen switch from loading screen to results
+            this.setState({
+              cities: [
+                responseJson.geonames[0].name.replace(new RegExp('"', 'g'), ''),
+                responseJson.geonames[1].name.replace(new RegExp('"', 'g'), ''),
+                responseJson.geonames[2].name.replace(new RegExp('"', 'g'), '')
+              ],
+              countryCode: true,
+              loading: false            
+            })
+            
             // Logs eventual errors  
           }).catch(error=>console.log(error))
-      }      
+      } else {
+
+        // If no country was found, loading is set to false, which makes the screen switch from loading screen
+        this.setState({
+          loading: false,
+        })
+      }
     }).catch(error=>console.log(error))
 
     // Sets loading to false, which makes the screen switch from loading screen to display eventual results
