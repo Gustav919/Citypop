@@ -1,0 +1,23 @@
+Allmänt:
+- Error när man kör programmet med "react-native run-android": react-native-vector-icons är manuellt länkat.
+
+Kod:
+- Skulle föredragit användning av TypeScript över ren JavaScript, mest för att göra det tydligare vad man får tillbaka för response från API:t (skapa typdefinition för API-anropet).
+- API-anropen borde flyttas till sin egen fil och delas upp i funktioner, se "src/backend/api.tsx" för exempel i TypeScript.
+- Parameter från react-navigation borde fås från "getParam" funktionen istället för "state.params".
+- Vissa delar av koden är inte formaterat korrekt (ej "lint":ade).
+- Många av kommentarerna onödiga. Koden är självförklarig på många ställen. Ex:
+	// Mounts component
+    this._isMounted = true;
+- Kommentarer som beskriver vad som renderas i render() funktionen borde tas bort. Annars måste man ändra kommentarerna om man ändrar vad som visas.
+- Båda dina loading screens och "not found" ser lika ut; flytta dessa till sina egna komponenter för att minska kodduplikation.
+- När koden blir större är det bra att dela upp render() i mindre funktioner, ex. "renderLoadingScreen" och "renderNoResultMessage".
+- Alla RN-styles i sin egen fil. Mycket bra, gör koden renare att läsa. Möjligtvis dela upp alla skärmar i sitt egna stilobject.
+
+UI:
+- Tangentbordet täcker text input. Använd "KeyboardAvoidingView".
+
+Git:
+- Git historiken (commit meddelanden) ser OK ut.
+- Skulle varit roligt att ha en "issue" som sedan blev resolvad med en commit för att visa att man förstår och kan arbeta med Git issues (viktigt i team).
+
